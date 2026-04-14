@@ -13,10 +13,10 @@
       --border:rgba(255,255,255,.14);
       --text:#f8fafc;
       --muted:#cbd5e1;
-      --gold:#f59e0b;
-      --orange:#f97316;
-      --blue:#60a5fa;
-      --cyan:#22d3ee;
+      --gold:#d4b48c;
+      --orange:#b98d5d;
+      --blue:#5b6f91;
+      --cyan:#7d93b8;
       --shadow:0 25px 60px rgba(0,0,0,.35);
     }
 
@@ -28,12 +28,12 @@
     }
 
     body{
-      font-family:Arial, Helvetica, sans-serif;
+      font-family: Arial, Helvetica, sans-serif;
       color:var(--text);
       background:
-        radial-gradient(circle at 20% 20%, rgba(96,165,250,.14), transparent 25%),
-        radial-gradient(circle at 80% 20%, rgba(34,211,238,.10), transparent 25%),
-        radial-gradient(circle at 50% 80%, rgba(245,158,11,.10), transparent 30%),
+        radial-gradient(circle at 20% 20%, rgba(125,147,184,.12), transparent 25%),
+        radial-gradient(circle at 80% 20%, rgba(212,180,140,.10), transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(185,141,93,.10), transparent 30%),
         linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
       overflow-x:hidden;
       min-height:100vh;
@@ -67,11 +67,11 @@
       border-top-color:var(--gold);
       margin:0 auto 18px;
       animation:spin 1s linear infinite;
-      box-shadow:0 0 30px rgba(245,158,11,.22);
+      box-shadow:0 0 30px rgba(212,180,140,.22);
     }
 
     .loader-text{
-      color:#fde68a;
+      color:#f3e6d7;
       letter-spacing:2px;
       animation:pulseLoader 1.5s ease-in-out infinite;
     }
@@ -93,7 +93,7 @@
       height:5px;
       z-index:9999;
       background:linear-gradient(90deg,var(--gold),var(--orange),var(--cyan));
-      box-shadow:0 0 16px rgba(249,115,22,.45);
+      box-shadow:0 0 16px rgba(185,141,93,.45);
     }
 
     #particles{
@@ -110,7 +110,7 @@
       border-radius:50%;
       pointer-events:none;
       transform:translate(-50%,-50%);
-      background:radial-gradient(circle, rgba(255,255,255,.10), transparent 68%);
+      background:radial-gradient(circle, rgba(255,255,255,.08), transparent 68%);
       z-index:1;
       mix-blend-mode:screen;
     }
@@ -186,7 +186,7 @@
       inset:-1px;
       border-radius:32px;
       padding:1px;
-      background:linear-gradient(135deg, rgba(255,255,255,.32), rgba(255,255,255,0), rgba(96,165,250,.28));
+      background:linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,0), rgba(125,147,184,.28));
       -webkit-mask:
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
@@ -198,7 +198,7 @@
     .hero-shine{
       position:absolute;
       inset:0;
-      background:linear-gradient(120deg, transparent 34%, rgba(255,255,255,.12) 50%, transparent 66%);
+      background:linear-gradient(120deg, transparent 34%, rgba(255,255,255,.10) 50%, transparent 66%);
       transform:translateX(-130%);
       animation:shine 4.8s linear infinite;
       pointer-events:none;
@@ -212,11 +212,11 @@
       display:inline-block;
       padding:8px 14px;
       border-radius:999px;
-      color:#fde68a;
+      color:#f3e6d7;
       font-size:14px;
       margin-bottom:18px;
-      background:rgba(245,158,11,.14);
-      border:1px solid rgba(251,191,36,.28);
+      background:rgba(212,180,140,.14);
+      border:1px solid rgba(212,180,140,.28);
       animation:tagPulse 2s ease-in-out infinite;
     }
 
@@ -233,7 +233,7 @@
     }
 
     .gradient-text{
-      background:linear-gradient(90deg,#fff,#bfdbfe,#fcd34d);
+      background:linear-gradient(90deg,#fff,#d9e2f2,#ead7bf);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
@@ -314,7 +314,7 @@
     .btn-primary{
       background:linear-gradient(135deg,var(--gold),var(--orange));
       color:#fff;
-      box-shadow:0 14px 34px rgba(249,115,22,.28);
+      box-shadow:0 14px 34px rgba(185,141,93,.28);
     }
 
     .btn-secondary{
@@ -325,58 +325,6 @@
 
     .btn:hover{
       transform:translateY(-4px) scale(1.02);
-    }
-
-    .hero-stats{
-      margin-top:30px;
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-      gap:16px;
-      opacity:0;
-      animation:fadeInText .9s ease forwards;
-      animation-delay:1.2s;
-    }
-
-    .mini-stat{
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.1);
-      border-radius:18px;
-      padding:18px;
-      transition:.3s ease;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .mini-stat::after{
-      content:"";
-      position:absolute;
-      inset:auto -20% -70% auto;
-      width:160px;
-      height:160px;
-      background:radial-gradient(circle, rgba(96,165,250,.18), transparent 65%);
-      transition:.35s ease;
-    }
-
-    .mini-stat:hover{
-      transform:translateY(-7px);
-      box-shadow:0 14px 28px rgba(0,0,0,.18);
-    }
-
-    .mini-stat:hover::after{
-      transform:scale(1.15);
-    }
-
-    .mini-stat .count{
-      font-size:1.9rem;
-      font-weight:700;
-      color:#fff7ed;
-      margin-bottom:6px;
-    }
-
-    .mini-stat p{
-      font-size:.96rem;
-      color:#dbeafe;
-      line-height:1.5;
     }
 
     section{
@@ -448,7 +396,7 @@
       inset:auto -18% -68% auto;
       width:180px;
       height:180px;
-      background:radial-gradient(circle, rgba(245,158,11,.18), transparent 65%);
+      background:radial-gradient(circle, rgba(212,180,140,.18), transparent 65%);
       transition:.35s ease;
       pointer-events:none;
     }
@@ -473,9 +421,24 @@
       border-radius:999px;
       margin-bottom:12px;
       font-size:13px;
-      color:#93c5fd;
-      background:rgba(96,165,250,.14);
-      border:1px solid rgba(147,197,253,.18);
+      color:#d9e2f2;
+      background:rgba(125,147,184,.14);
+      border:1px solid rgba(125,147,184,.18);
+    }
+
+    .phase-head{
+      text-align:center;
+      font-size:1.1rem;
+      font-weight:700;
+      margin-bottom:16px;
+      padding:12px;
+      border-radius:16px;
+      background:linear-gradient(135deg, rgba(91,111,145,.85), rgba(125,147,184,.75));
+      color:white;
+    }
+
+    .phase-head.beige{
+      background:linear-gradient(135deg, rgba(185,141,93,.85), rgba(212,180,140,.75));
     }
 
     .card h3{
@@ -493,9 +456,9 @@
       overflow:hidden;
       border-radius:28px;
       padding:34px;
-      background:linear-gradient(135deg, rgba(245,158,11,.18), rgba(249,115,22,.18), rgba(255,255,255,.08));
-      border:1px solid rgba(251,191,36,.22);
-      box-shadow:0 22px 48px rgba(249,115,22,.12);
+      background:linear-gradient(135deg, rgba(212,180,140,.18), rgba(185,141,93,.18), rgba(255,255,255,.08));
+      border:1px solid rgba(212,180,140,.22);
+      box-shadow:0 22px 48px rgba(185,141,93,.12);
       animation:floatSoft 4s ease-in-out infinite;
     }
 
@@ -525,181 +488,6 @@
       font-size:1.06rem;
     }
 
-    .formula-box{
-      background:linear-gradient(135deg, rgba(245,158,11,.18), rgba(249,115,22,.18));
-      border:1px solid rgba(251,191,36,.25);
-      border-radius:24px;
-      padding:30px;
-      text-align:center;
-      font-size:1.2rem;
-      font-weight:700;
-      color:#fff7ed;
-      box-shadow:0 12px 30px rgba(249,115,22,.12);
-      animation:floatSoft 4s ease-in-out infinite;
-    }
-
-    .timeline{
-      display:grid;
-      gap:18px;
-      position:relative;
-    }
-
-    .timeline::before{
-      content:"";
-      position:absolute;
-      left:17px;
-      top:0;
-      bottom:0;
-      width:3px;
-      background:linear-gradient(var(--gold),var(--orange),transparent);
-      box-shadow:0 0 14px rgba(245,158,11,.2);
-    }
-
-    .timeline-item{
-      position:relative;
-      padding-left:54px;
-      opacity:0;
-      transform:translateX(-14px);
-      animation:timelineIn .7s ease forwards;
-    }
-
-    .timeline-item:nth-child(1){animation-delay:.1s;}
-    .timeline-item:nth-child(2){animation-delay:.25s;}
-    .timeline-item:nth-child(3){animation-delay:.4s;}
-    .timeline-item:nth-child(4){animation-delay:.55s;}
-    .timeline-item:nth-child(5){animation-delay:.7s;}
-    .timeline-item:nth-child(6){animation-delay:.85s;}
-
-    @keyframes timelineIn{
-      to{opacity:1; transform:translateX(0);}
-    }
-
-    .timeline-dot{
-      position:absolute;
-      left:7px;
-      top:24px;
-      width:22px;
-      height:22px;
-      border-radius:50%;
-      background:linear-gradient(135deg,var(--gold),var(--orange));
-      box-shadow:0 0 0 0 rgba(245,158,11,.4);
-      animation:dotPulse 2s infinite;
-    }
-
-    @keyframes dotPulse{
-      0%{box-shadow:0 0 0 0 rgba(245,158,11,.35);}
-      70%{box-shadow:0 0 0 16px rgba(245,158,11,0);}
-      100%{box-shadow:0 0 0 0 rgba(245,158,11,0);}
-    }
-
-    .scenario-buttons{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-bottom:20px;
-    }
-
-    .scenario-btn{
-      position:relative;
-      overflow:hidden;
-      padding:12px 18px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      cursor:pointer;
-      transition:.28s ease;
-      font-weight:700;
-    }
-
-    .scenario-btn:hover,
-    .scenario-btn.active{
-      background:linear-gradient(135deg,#2563eb,#0ea5e9);
-      border-color:transparent;
-      transform:translateY(-2px) scale(1.02);
-      box-shadow:0 12px 24px rgba(14,165,233,.22);
-    }
-
-    .scenario-btn .ripple{
-      position:absolute;
-      border-radius:50%;
-      transform:scale(0);
-      background:rgba(255,255,255,.35);
-      animation:ripple .65s linear;
-      pointer-events:none;
-    }
-
-    @keyframes ripple{
-      to{
-        transform:scale(4);
-        opacity:0;
-      }
-    }
-
-    .scenario-panel{
-      position:relative;
-      min-height:146px;
-    }
-
-    .scenario-content{
-      position:absolute;
-      inset:0;
-      display:none;
-      animation:scenarioFade .45s ease;
-    }
-
-    .scenario-content.active{
-      display:block;
-    }
-
-    @keyframes scenarioFade{
-      from{opacity:0; transform:translateY(14px) scale(.98);}
-      to{opacity:1; transform:translateY(0) scale(1);}
-    }
-
-    .accordion-item{
-      margin-bottom:14px;
-      border-radius:20px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.07);
-      transition:.3s ease;
-    }
-
-    .accordion-item:hover{
-      background:rgba(255,255,255,.085);
-    }
-
-    .accordion-header{
-      width:100%;
-      padding:18px 20px;
-      text-align:left;
-      background:transparent;
-      color:#fff;
-      font-size:1rem;
-      font-weight:700;
-      border:none;
-      cursor:pointer;
-      transition:.2s ease;
-    }
-
-    .accordion-header:hover{
-      color:#fde68a;
-    }
-
-    .accordion-body{
-      max-height:0;
-      overflow:hidden;
-      transition:max-height .4s ease;
-      padding:0 20px;
-    }
-
-    .accordion-body p{
-      color:#dbeafe;
-      line-height:1.8;
-      padding-bottom:18px;
-    }
-
     .quote-box{
       position:relative;
       overflow:hidden;
@@ -714,8 +502,43 @@
     }
 
     @keyframes quoteGlow{
-      0%,100%{box-shadow:0 0 0 rgba(245,158,11,0);}
-      50%{box-shadow:0 0 20px rgba(245,158,11,.12);}
+      0%,100%{box-shadow:0 0 0 rgba(212,180,140,0);}
+      50%{box-shadow:0 0 20px rgba(212,180,140,.12);}
+    }
+
+    .points-list{
+      display:grid;
+      gap:16px;
+    }
+
+    .point-item{
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      padding:18px;
+      transition:.3s ease;
+    }
+
+    .point-item:hover{
+      transform:translateX(8px);
+      background:rgba(255,255,255,.1);
+    }
+
+    .point-icon{
+      min-width:36px;
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      color:white;
+      font-weight:700;
+      box-shadow:0 8px 20px rgba(185,141,93,.25);
     }
 
     .footer-quiz{
@@ -733,7 +556,7 @@
       content:"";
       position:absolute;
       inset:0;
-      background:radial-gradient(circle at top, rgba(96,165,250,.18), transparent 45%);
+      background:radial-gradient(circle at top, rgba(125,147,184,.18), transparent 45%);
       pointer-events:none;
     }
 
@@ -795,54 +618,61 @@
         <span class="tag">Abercrombie & Fitch • Key Moment</span>
         <h1 class="typing"><span class="gradient-text">Check Out</span></h1>
         <p>
-          El check out no es solo cobrar. Es el último momento de contacto con el cliente,
-          donde se confirma la compra, se refuerza su decisión y se deja la última impresión.
-          En mi caso, busco que el proceso sea ágil, sin silencios incómodos y aprovechando cada segundo.
+          El check out es el último contacto con el cliente. En este momento no solo se cobra: también se confirma la compra, se refuerza la decisión y se deja la última impresión de toda la experiencia en tienda.
         </p>
 
         <div class="hero-buttons">
-          <a href="#general" class="btn btn-primary">Ver presentación</a>
+          <a href="#definicion" class="btn btn-primary">Ver presentación</a>
           <a href="#quiz" class="btn btn-secondary">Ir al cuestionario</a>
-        </div>
-
-        <div class="hero-stats">
-          <div class="mini-stat">
-            <div class="count" data-target="1">0</div>
-            <p>Última impresión que define cómo se recuerda la experiencia.</p>
-          </div>
-          <div class="mini-stat">
-            <div class="count" data-target="3">0</div>
-            <p>Claves de mi proceso: hablar, usar el tiempo y agilizar.</p>
-          </div>
-          <div class="mini-stat">
-            <div class="count" data-target="100">0</div>
-            <p>Enfoque total en hacer el proceso rápido y sin tiempos muertos.</p>
-          </div>
         </div>
       </div>
     </section>
 
-    <section id="general" class="fade-up">
-      <h2 class="section-title">Idea general del Check Out</h2>
+    <section id="definicion" class="fade-up">
+      <h2 class="section-title">Definición general</h2>
       <p class="section-sub">
-        El check out es el cierre de toda la experiencia. Aquí el cliente no solo paga: también confirma si el servicio fue eficiente, cómodo y bien llevado.
+        El key moment de check out representa el cierre de la experiencia. Aquí se busca que el cliente termine su compra de forma clara, positiva y eficiente, reforzando su decisión y asegurando que se lleve todo lo que necesita.
+      </p>
+      <div class="quote-box">
+        En pocas palabras: caja no es solo cobrar, es cerrar bien la experiencia.
+      </div>
+    </section>
+
+    <section class="fade-up">
+      <h2 class="section-title">Las 6 fases del key moment</h2>
+      <p class="section-sub">
+        Estas son las seis fases que marca el key moment y cómo se aplican específicamente en check out.
       </p>
 
       <div class="grid grid-3">
-        <div class="card tilt-card">
-          <span class="pill">Cierre</span>
-          <h3>Último contacto</h3>
-          <p>Es el momento final antes de que el cliente salga de la tienda.</p>
+        <div class="card">
+          <div class="phase-head">INSPIRAR</div>
+          <p>Despídete con energía positiva: sonríe, agradece la compra y haz contacto visual. Siempre que sea posible, ofrece un consejo experto sobre el cuidado de sus prendas; este último gesto de valor demuestra que nos importa su inversión más allá de la venta.</p>
         </div>
-        <div class="card tilt-card">
-          <span class="pill">Impacto</span>
-          <h3>Última impresión</h3>
-          <p>Puede reforzar una buena experiencia o arruinarla si el cierre es lento o frío.</p>
+
+        <div class="card">
+          <div class="phase-head beige">RECONOCER</div>
+          <p>Sonríe, haz contacto visual y sostén la plática antes, durante y después de la transacción. Confirma con entusiasmo los artículos que está adquiriendo; este último repaso asegura la precisión y reafirma, una vez más, su excelente elección.</p>
         </div>
-        <div class="card tilt-card">
-          <span class="pill">Meta</span>
-          <h3>Salir satisfecho</h3>
-          <p>El cliente debe irse con una experiencia rápida, clara y positiva.</p>
+
+        <div class="card">
+          <div class="phase-head">PERSONALIZAR</div>
+          <p>Mantén una conversación amena mientras empacas su compra, trata cada prenda con máxima delicadeza, dóblala con precisión y utiliza una bolsa del tamaño adecuado.</p>
+        </div>
+
+        <div class="card">
+          <div class="phase-head beige">EDUCAR</div>
+          <p>Menciona los beneficios del registro en CRM y ofrece el envío del ticket por correo electrónico. Destaca nuestras alternativas de venta por WhatsApp con el beneficio de envío gratis. No olvides la encuesta de servicio.</p>
+        </div>
+
+        <div class="card">
+          <div class="phase-head">VALIDAR</div>
+          <p>Halaga su compra con un cumplido sobre el producto elegido. Un comentario genuino reafirma su decisión.</p>
+        </div>
+
+        <div class="card">
+          <div class="phase-head beige">CHECK IN</div>
+          <p>Antes de procesar el pago, asegúrate de que el cliente lleve todo el producto que necesita. Si un artículo está agotado, actúa de inmediato: busca la disponibilidad en otras sucursales.</p>
         </div>
       </div>
     </section>
@@ -851,154 +681,65 @@
       <div class="diego-spotlight">
         <h3>Cómo lo hago yo, Diego</h3>
         <p>
-          Yo trato de hacerlo rápido y nunca quedarme callado. Mientras desalarmo la ropa, menciono que contesten la encuesta de satisfacción. Así, mientras el cliente espera, ya la puede contestar. Cuando termino de desalarmar, doblar y empacar la ropa, el cliente ya respondió la encuesta y está listo para pagar e irse. Eso hace el proceso mucho más ágil y rápido.
+          En mi caso, trato de hacer el proceso rápido y nunca quedarme callado. Mientras desalarmo la ropa, le menciono al cliente que puede contestar la encuesta de satisfacción. Así, mientras espera, ya la puede ir respondiendo. Después, mientras termino de doblar y empacar la ropa, el cliente sigue avanzando con la encuesta. Entonces, cuando yo termino de preparar la compra, el cliente ya terminó también y queda listo para pagar e irse. De esta forma el proceso se vuelve más ágil, más rápido y sin tiempos muertos.
         </p>
       </div>
     </section>
 
     <section class="fade-up">
-      <h2 class="section-title">Mi proceso paso a paso</h2>
+      <h2 class="section-title">Puntos clave a tener en cuenta</h2>
       <p class="section-sub">
-        Esta es la forma en la que yo convierto el check out en un proceso rápido, fluido y sin tiempos muertos.
+        Estos son los puntos más importantes para que el check out funcione bien y se vea eficiente.
       </p>
 
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="card tilt-card">
-            <h3>1. Nunca me quedo callado</h3>
-            <p>Desde el inicio mantengo conversación para que el cliente no sienta el proceso frío o incómodo.</p>
+      <div class="points-list">
+        <div class="point-item">
+          <div class="point-icon">1</div>
+          <div>
+            <h3>No quedarte callado</h3>
+            <p>La conversación hace que el proceso se sienta más natural y evita una experiencia fría o incómoda.</p>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="card tilt-card">
-            <h3>2. Desalarmo mientras hablo</h3>
-            <p>Aprovecho ese momento para seguir interactuando mientras avanzo con la ropa.</p>
+        <div class="point-item">
+          <div class="point-icon">2</div>
+          <div>
+            <h3>Aprovechar el tiempo de espera</h3>
+            <p>Mientras tú desalarmas, doblas o empacas, el cliente puede avanzar con la encuesta.</p>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="card tilt-card">
-            <h3>3. Menciono la encuesta</h3>
-            <p>Le pido al cliente que conteste la encuesta de satisfacción mientras espera.</p>
+        <div class="point-item">
+          <div class="point-icon">3</div>
+          <div>
+            <h3>Hacer el proceso ágil</h3>
+            <p>La idea es que al terminar de preparar la compra, el cliente ya esté listo para pagar y salir.</p>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="card tilt-card">
-            <h3>4. Doblo y empaco en paralelo</h3>
-            <p>Mientras yo termino de doblar y empacar, el cliente ya está ocupado contestando.</p>
+        <div class="point-item">
+          <div class="point-icon">4</div>
+          <div>
+            <h3>Confirmar y validar</h3>
+            <p>Siempre conviene reforzar que su compra fue una buena elección y confirmar que lleva todo lo necesario.</p>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="card tilt-card">
-            <h3>5. Todo queda listo al mismo tiempo</h3>
-            <p>Cuando yo termino, el cliente ya terminó también y queda listo para pagar.</p>
+        <div class="point-item">
+          <div class="point-icon">5</div>
+          <div>
+            <h3>Usar la encuesta como apoyo</h3>
+            <p>No verla como algo aparte, sino como una herramienta para hacer más eficiente el proceso.</p>
           </div>
         </div>
 
-        <div class="timeline-item">
-          <div class="timeline-dot"></div>
-          <div class="card tilt-card">
-            <h3>6. Resultado</h3>
-            <p>Se vuelve un proceso ágil, rápido y sin pausas innecesarias.</p>
+        <div class="point-item">
+          <div class="point-icon">6</div>
+          <div>
+            <h3>Dejar una buena última impresión</h3>
+            <p>El cliente se va con lo último que vivió en caja, así que el cierre importa mucho.</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="fade-up">
-      <div class="formula-box">
-        Hablar siempre + usar el tiempo mientras trabajo + encuesta en paralelo = proceso rápido y fluido
-      </div>
-    </section>
-
-    <section class="fade-up">
-      <h2 class="section-title">Qué hace diferente mi forma de hacerlo</h2>
-      <div class="grid grid-3">
-        <div class="card tilt-card">
-          <span class="pill">Enfoque</span>
-          <h3>Evito silencios</h3>
-          <p>La interacción sigue viva durante el proceso.</p>
-        </div>
-        <div class="card tilt-card">
-          <span class="pill">Tiempo</span>
-          <h3>Uso el tiempo de espera</h3>
-          <p>Mientras yo avanzo, el cliente también avanza contestando la encuesta.</p>
-        </div>
-        <div class="card tilt-card">
-          <span class="pill">Resultado</span>
-          <h3>Más agilidad</h3>
-          <p>El pago llega más rápido porque todo ya quedó adelantado.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="fade-up">
-      <h2 class="section-title">Cómo adapto mi proceso</h2>
-      <p class="section-sub">
-        No todos los clientes reaccionan igual, así que ajusto el tono sin perder la velocidad del proceso.
-      </p>
-
-      <div class="scenario-buttons">
-        <button class="scenario-btn active" onclick="showScenario(0, event)">Cliente callado</button>
-        <button class="scenario-btn" onclick="showScenario(1, event)">Cliente con prisa</button>
-        <button class="scenario-btn" onclick="showScenario(2, event)">Cliente indeciso</button>
-      </div>
-
-      <div class="scenario-panel">
-        <div class="card scenario-content active">
-          <h3>Cliente callado</h3>
-          <p>Mantengo conversación ligera y natural, sin forzar demasiado, pero evitando que el proceso se sienta seco.</p>
-        </div>
-
-        <div class="card scenario-content">
-          <h3>Cliente con prisa</h3>
-          <p>Voy más directo, pero sigo usando la encuesta y sigo hablando lo justo para mantener la experiencia rápida y clara.</p>
-        </div>
-
-        <div class="card scenario-content">
-          <h3>Cliente indeciso</h3>
-          <p>Mientras hago el proceso, refuerzo su decisión con comentarios breves y mantengo el flujo sin detenerme.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="fade-up">
-      <h2 class="section-title">Errores que yo evito</h2>
-
-      <div class="accordion-item">
-        <button class="accordion-header">Quedarme callado</button>
-        <div class="accordion-body">
-          <p>Eso hace que la experiencia se sienta incómoda o demasiado automática.</p>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-header">Hacer el proceso lento</button>
-        <div class="accordion-body">
-          <p>Si no aprovechas el tiempo, el cliente solo espera y siente que todo tarda más.</p>
-        </div>
-      </div>
-
-      <div class="accordion-item">
-        <button class="accordion-header">No usar el tiempo de espera</button>
-        <div class="accordion-body">
-          <p>La encuesta me sirve para que el cliente haga algo útil mientras yo termino con la ropa.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="fade-up">
-      <h2 class="section-title">Cómo lo explico en mi exposición</h2>
-      <div class="quote-box">
-        “Para mí, el check out no es solo cobrar. Yo trato de hacerlo rápido y nunca quedarme callado. Mientras desalarmo la ropa, le menciono al cliente que puede contestar la encuesta de satisfacción. Así, mientras yo doblo y empaco, el cliente ya está respondiendo. Cuando termino, él también ya terminó y está listo para pagar e irse. Eso hace que el proceso sea mucho más ágil y rápido.”
       </div>
     </section>
 
@@ -1061,78 +802,6 @@
       heroCard.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
     });
 
-    document.querySelectorAll('.tilt-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const rotateY = (x - rect.width / 2) / 28;
-        const rotateX = (rect.height / 2 - y) / 28;
-        card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
-      });
-
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-
-    function showScenario(index, event) {
-      const buttons = document.querySelectorAll('.scenario-btn');
-      const contents = document.querySelectorAll('.scenario-content');
-
-      buttons.forEach((btn, i) => btn.classList.toggle('active', i === index));
-      contents.forEach((content, i) => content.classList.toggle('active', i === index));
-
-      if (event) {
-        const button = event.currentTarget;
-        const circle = document.createElement('span');
-        const diameter = Math.max(button.clientWidth, button.clientHeight);
-        const radius = diameter / 2;
-        circle.style.width = circle.style.height = `${diameter}px`;
-        circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
-        circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
-        circle.classList.add('ripple');
-        const ripple = button.getElementsByClassName('ripple')[0];
-        if (ripple) ripple.remove();
-        button.appendChild(circle);
-      }
-    }
-
-    document.querySelectorAll('.accordion-header').forEach(header => {
-      header.addEventListener('click', () => {
-        const body = header.nextElementSibling;
-        const isOpen = body.style.maxHeight;
-        document.querySelectorAll('.accordion-body').forEach(item => item.style.maxHeight = null);
-        if (!isOpen) {
-          body.style.maxHeight = body.scrollHeight + 'px';
-        }
-      });
-    });
-
-    const counters = document.querySelectorAll('.count');
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.done) {
-          entry.target.dataset.done = 'true';
-          const target = +entry.target.dataset.target;
-          let current = 0;
-          const step = Math.max(1, Math.ceil(target / 45));
-          const update = () => {
-            current += step;
-            if (current >= target) {
-              entry.target.textContent = target;
-            } else {
-              entry.target.textContent = current;
-              requestAnimationFrame(update);
-            }
-          };
-          update();
-        }
-      });
-    }, { threshold: 0.4 });
-
-    counters.forEach(counter => counterObserver.observe(counter));
-
     document.getElementById('formLink').href = "https://forms.gle/TU-LINK-AQUI";
 
     const canvas = document.getElementById('particles');
@@ -1185,7 +854,7 @@
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(147,197,253,${0.14 - dist / 1200})`;
+            ctx.strokeStyle = `rgba(217,226,242,${0.14 - dist / 1200})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }
