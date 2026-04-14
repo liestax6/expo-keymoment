@@ -5,389 +5,657 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Key Moment: Check Out | ANF</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      scroll-behavior: smooth;
+    :root{
+      --bg1:#06111f;
+      --bg2:#0c1b2e;
+      --bg3:#132943;
+      --card:rgba(255,255,255,0.08);
+      --card-border:rgba(255,255,255,0.14);
+      --text:#f8fafc;
+      --muted:#cbd5e1;
+      --blue:#60a5fa;
+      --cyan:#22d3ee;
+      --gold:#f59e0b;
+      --orange:#f97316;
+      --shadow:0 20px 60px rgba(0,0,0,.35);
     }
 
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
-      color: white;
-      overflow-x: hidden;
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+      scroll-behavior:smooth;
     }
 
-    .bg-glow {
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.18;
-      z-index: 0;
-      animation: floatGlow 8s ease-in-out infinite alternate;
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(96,165,250,.15), transparent 25%),
+        radial-gradient(circle at 80% 20%, rgba(34,211,238,.10), transparent 25%),
+        radial-gradient(circle at 50% 80%, rgba(245,158,11,.12), transparent 30%),
+        linear-gradient(135deg, var(--bg1), var(--bg2), var(--bg3));
+      overflow-x:hidden;
+      min-height:100vh;
     }
 
-    .glow1 {
-      background: #60a5fa;
-      top: -100px;
-      left: -100px;
+    .scroll-progress{
+      position:fixed;
+      top:0;
+      left:0;
+      height:5px;
+      width:0%;
+      background:linear-gradient(90deg,var(--gold),var(--orange),var(--cyan));
+      z-index:9999;
+      box-shadow:0 0 18px rgba(249,115,22,.5);
     }
 
-    .glow2 {
-      background: #f59e0b;
-      bottom: -120px;
-      right: -120px;
-      animation-delay: 1.5s;
+    .mouse-glow{
+      position:fixed;
+      width:280px;
+      height:280px;
+      border-radius:50%;
+      pointer-events:none;
+      background:radial-gradient(circle, rgba(255,255,255,.08), transparent 65%);
+      transform:translate(-50%,-50%);
+      z-index:1;
+      mix-blend-mode:screen;
     }
 
-    @keyframes floatGlow {
-      from { transform: translateY(0px) translateX(0px) scale(1); }
-      to { transform: translateY(30px) translateX(20px) scale(1.15); }
+    #particles{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
     }
 
-    .container {
-      position: relative;
-      z-index: 2;
-      width: min(1150px, 92%);
-      margin: auto;
-      padding: 40px 0 80px;
+    .bg-orb{
+      position:fixed;
+      border-radius:50%;
+      filter:blur(90px);
+      opacity:.18;
+      z-index:0;
+      animation:floatOrb 8s ease-in-out infinite alternate;
     }
 
-    .hero {
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .orb1{
+      width:340px;height:340px;
+      background:var(--blue);
+      top:-80px;left:-80px;
     }
 
-    .hero-card {
-      width: 100%;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      backdrop-filter: blur(14px);
-      border-radius: 28px;
-      padding: 48px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
-      animation: fadeUp 1s ease;
+    .orb2{
+      width:360px;height:360px;
+      background:var(--orange);
+      right:-100px;bottom:-100px;
+      animation-delay:1s;
     }
 
-    .tag {
-      display: inline-block;
-      background: rgba(245, 158, 11, 0.15);
-      color: #fbbf24;
-      border: 1px solid rgba(251,191,36,0.35);
-      padding: 8px 14px;
-      border-radius: 999px;
-      font-size: 14px;
-      margin-bottom: 18px;
+    .orb3{
+      width:260px;height:260px;
+      background:var(--cyan);
+      left:40%;
+      top:25%;
+      animation-delay:2s;
     }
 
-    h1 {
-      font-size: clamp(2.3rem, 5vw, 4.6rem);
-      line-height: 1;
-      margin-bottom: 18px;
+    @keyframes floatOrb{
+      from{transform:translate(0,0) scale(1);}
+      to{transform:translate(30px,35px) scale(1.14);}
     }
 
-    .hero p {
-      font-size: 1.1rem;
-      max-width: 780px;
-      color: #e2e8f0;
-      line-height: 1.7;
+    .container{
+      position:relative;
+      z-index:2;
+      width:min(1180px, 92%);
+      margin:auto;
+      padding:30px 0 80px;
     }
 
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 28px;
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
     }
 
-    .btn {
-      border: none;
-      cursor: pointer;
-      padding: 14px 22px;
-      border-radius: 14px;
-      font-weight: bold;
-      transition: 0.3s ease;
-      text-decoration: none;
-      display: inline-block;
+    .hero-card{
+      width:100%;
+      position:relative;
+      overflow:hidden;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.16);
+      backdrop-filter:blur(16px);
+      border-radius:30px;
+      padding:56px;
+      box-shadow:var(--shadow);
+      animation:heroEnter 1.2s ease;
+      transform-style:preserve-3d;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, #f59e0b, #f97316);
-      color: white;
-      box-shadow: 0 10px 30px rgba(249,115,22,0.28);
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:30px;
+      padding:1px;
+      background:linear-gradient(135deg, rgba(255,255,255,.28), rgba(255,255,255,0), rgba(96,165,250,.35));
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;
+              mask-composite:exclude;
+      pointer-events:none;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-3px) scale(1.02);
+    .hero-shine{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg, transparent 35%, rgba(255,255,255,.10) 50%, transparent 65%);
+      transform:translateX(-120%);
+      animation:shine 5s linear infinite;
+      pointer-events:none;
     }
 
-    .btn-secondary {
-      background: rgba(255,255,255,0.08);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
+    @keyframes shine{
+      to{transform:translateX(120%);}
     }
 
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.14);
-      transform: translateY(-3px);
+    .tag{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:14px;
+      color:#fde68a;
+      background:rgba(245,158,11,.14);
+      border:1px solid rgba(251,191,36,.30);
+      margin-bottom:18px;
+      animation:pulseSoft 2.5s infinite;
     }
 
-    section {
-      margin-top: 70px;
-      animation: fadeUp 1s ease both;
+    @keyframes pulseSoft{
+      0%,100%{transform:scale(1); box-shadow:0 0 0 rgba(245,158,11,0);}
+      50%{transform:scale(1.03); box-shadow:0 0 25px rgba(245,158,11,.18);}
     }
 
-    .section-title {
-      font-size: 2rem;
-      margin-bottom: 18px;
+    h1{
+      font-size:clamp(2.7rem, 6vw, 5.4rem);
+      line-height:.95;
+      margin-bottom:18px;
+      letter-spacing:-1px;
     }
 
-    .section-sub {
-      color: #cbd5e1;
-      margin-bottom: 26px;
-      line-height: 1.7;
+    .gradient-text{
+      background:linear-gradient(90deg,#fff,#bfdbfe,#fcd34d);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
     }
 
-    .grid {
-      display: grid;
-      gap: 22px;
+    .hero p{
+      font-size:1.12rem;
+      color:var(--muted);
+      max-width:820px;
+      line-height:1.8;
     }
 
-    .grid-2 {
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    .hero-buttons{
+      display:flex;
+      flex-wrap:wrap;
+      gap:16px;
+      margin-top:30px;
     }
 
-    .grid-3 {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    .btn{
+      position:relative;
+      overflow:hidden;
+      border:none;
+      text-decoration:none;
+      cursor:pointer;
+      padding:15px 24px;
+      border-radius:16px;
+      font-weight:700;
+      transition:.28s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
     }
 
-    .card {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 22px;
-      padding: 24px;
-      transition: 0.35s ease;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    .btn::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(120deg, transparent 30%, rgba(255,255,255,.22), transparent 70%);
+      transform:translateX(-130%);
+      transition:.55s ease;
     }
 
-    .card:hover {
-      transform: translateY(-8px);
-      background: rgba(255,255,255,0.11);
+    .btn:hover::before{
+      transform:translateX(130%);
     }
 
-    .card h3 {
-      margin-bottom: 12px;
-      font-size: 1.2rem;
-      color: #f8fafc;
+    .btn-primary{
+      color:#fff;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      box-shadow:0 12px 35px rgba(249,115,22,.30);
     }
 
-    .card p, .card li {
-      color: #dbeafe;
-      line-height: 1.7;
+    .btn-secondary{
+      color:#fff;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.16);
     }
 
-    .pill {
-      display: inline-block;
-      background: rgba(96,165,250,0.15);
-      color: #93c5fd;
-      padding: 7px 12px;
-      border-radius: 999px;
-      margin-bottom: 12px;
-      font-size: 13px;
+    .btn:hover{
+      transform:translateY(-4px) scale(1.02);
     }
 
-    .steps {
-      counter-reset: step;
+    .hero-mini-stats{
+      margin-top:28px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:16px;
     }
 
-    .step {
-      position: relative;
-      padding-left: 62px;
+    .mini-stat{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:18px;
+      padding:18px;
+      transition:.3s ease;
     }
 
-    .step::before {
-      counter-increment: step;
-      content: counter(step);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #3b82f6, #06b6d4);
-      color: white;
-      display: grid;
-      place-items: center;
-      font-weight: bold;
-      box-shadow: 0 8px 20px rgba(59,130,246,0.3);
+    .mini-stat:hover{
+      transform:translateY(-6px);
+      box-shadow:0 14px 30px rgba(0,0,0,.18);
     }
 
-    .scenario-buttons {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
+    .mini-stat h3{
+      font-size:1.8rem;
+      margin-bottom:6px;
+      color:#fff7ed;
     }
 
-    .scenario-btn {
-      padding: 12px 18px;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.08);
-      color: white;
-      cursor: pointer;
-      transition: 0.25s ease;
-      font-weight: bold;
+    .mini-stat p{
+      font-size:.96rem;
+      color:#dbeafe;
+      line-height:1.5;
+    }
+
+    section{
+      margin-top:76px;
+    }
+
+    .fade-on-scroll{
+      opacity:0;
+      transform:translateY(32px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+
+    .fade-on-scroll.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .section-title{
+      font-size:2.2rem;
+      margin-bottom:14px;
+    }
+
+    .section-sub{
+      color:var(--muted);
+      line-height:1.8;
+      margin-bottom:24px;
+      max-width:900px;
+    }
+
+    .grid{
+      display:grid;
+      gap:22px;
+    }
+
+    .grid-2{
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    }
+
+    .grid-3{
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    }
+
+    .card{
+      position:relative;
+      overflow:hidden;
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:24px;
+      padding:24px;
+      transition:.35s ease;
+      box-shadow:0 12px 28px rgba(0,0,0,.12);
+      backdrop-filter:blur(10px);
+    }
+
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:auto -20% -70% auto;
+      width:180px;
+      height:180px;
+      background:radial-gradient(circle, rgba(96,165,250,.18), transparent 65%);
+      transform:scale(.8);
+      transition:.35s ease;
+      pointer-events:none;
+    }
+
+    .card:hover{
+      transform:translateY(-10px) rotateX(3deg) rotateY(-3deg);
+      box-shadow:0 22px 44px rgba(0,0,0,.22);
+      background:rgba(255,255,255,.10);
+    }
+
+    .card:hover::after{
+      transform:scale(1.15);
+    }
+
+    .pill{
+      display:inline-block;
+      padding:7px 12px;
+      border-radius:999px;
+      margin-bottom:12px;
+      font-size:13px;
+      color:#93c5fd;
+      background:rgba(96,165,250,.14);
+      border:1px solid rgba(147,197,253,.18);
+    }
+
+    .card h3{
+      margin-bottom:10px;
+      font-size:1.2rem;
+    }
+
+    .card p, .card li{
+      color:#dbeafe;
+      line-height:1.8;
+    }
+
+    .steps{
+      counter-reset:step;
+    }
+
+    .step{
+      position:relative;
+      padding-left:70px;
+    }
+
+    .step::before{
+      counter-increment:step;
+      content:counter(step);
+      position:absolute;
+      left:0;
+      top:0;
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      color:#fff;
+      background:linear-gradient(135deg,#2563eb,#06b6d4);
+      box-shadow:0 10px 24px rgba(37,99,235,.30);
+      animation:bob 2.2s ease-in-out infinite;
+    }
+
+    @keyframes bob{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-4px);}
+    }
+
+    .formula-box{
+      background:linear-gradient(135deg, rgba(245,158,11,.18), rgba(249,115,22,.18));
+      border:1px solid rgba(251,191,36,.25);
+      border-radius:24px;
+      padding:30px;
+      text-align:center;
+      font-size:1.22rem;
+      font-weight:700;
+      color:#fff7ed;
+      box-shadow:0 12px 30px rgba(249,115,22,.12);
+      animation:floatPanel 4s ease-in-out infinite;
+    }
+
+    @keyframes floatPanel{
+      0%,100%{transform:translateY(0);}
+      50%{transform:translateY(-5px);}
+    }
+
+    .quote-box{
+      position:relative;
+      overflow:hidden;
+      border-left:4px solid var(--gold);
+      padding:20px 22px;
+      border-radius:18px;
+      background:rgba(255,255,255,.07);
+      color:#fff;
+      font-size:1.05rem;
+      line-height:1.9;
+    }
+
+    .quote-box::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg, rgba(245,158,11,.08), transparent 40%);
+      pointer-events:none;
+    }
+
+    .scenario-buttons{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:20px;
+    }
+
+    .scenario-btn{
+      padding:12px 18px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+      cursor:pointer;
+      transition:.28s ease;
+      font-weight:700;
     }
 
     .scenario-btn:hover,
-    .scenario-btn.active {
-      background: linear-gradient(135deg, #2563eb, #0ea5e9);
-      border-color: transparent;
-      transform: translateY(-2px);
+    .scenario-btn.active{
+      background:linear-gradient(135deg,#2563eb,#0ea5e9);
+      border-color:transparent;
+      transform:translateY(-2px) scale(1.02);
+      box-shadow:0 12px 24px rgba(14,165,233,.22);
     }
 
-    .scenario-content {
-      display: none;
+    .scenario-content{
+      display:none;
     }
 
-    .scenario-content.active {
-      display: block;
-      animation: fadeUp 0.45s ease;
+    .scenario-content.active{
+      display:block;
+      animation:fadeInUp .45s ease;
     }
 
-    .formula-box {
-      background: linear-gradient(135deg, rgba(245,158,11,0.16), rgba(249,115,22,0.16));
-      border: 1px solid rgba(251,191,36,0.25);
-      border-radius: 22px;
-      padding: 28px;
-      text-align: center;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: #fff7ed;
-      box-shadow: 0 12px 30px rgba(249,115,22,0.12);
+    @keyframes fadeInUp{
+      from{opacity:0; transform:translateY(16px);}
+      to{opacity:1; transform:translateY(0);}
     }
 
-    .accordion-item {
-      margin-bottom: 14px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.07);
+    .accordion-item{
+      margin-bottom:14px;
+      border-radius:20px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.07);
+      transition:.3s ease;
     }
 
-    .accordion-header {
-      width: 100%;
-      padding: 18px 20px;
-      text-align: left;
-      background: transparent;
-      color: white;
-      font-size: 1rem;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
+    .accordion-item:hover{
+      background:rgba(255,255,255,.085);
     }
 
-    .accordion-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.35s ease;
-      padding: 0 20px;
+    .accordion-header{
+      width:100%;
+      padding:18px 20px;
+      text-align:left;
+      background:transparent;
+      color:#fff;
+      font-size:1rem;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+      transition:.2s ease;
     }
 
-    .accordion-body p {
-      color: #dbeafe;
-      padding-bottom: 18px;
-      line-height: 1.7;
+    .accordion-header:hover{
+      color:#fde68a;
     }
 
-    .footer-quiz {
-      text-align: center;
-      padding: 34px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 26px;
+    .accordion-body{
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .38s ease;
+      padding:0 20px;
     }
 
-    .footer-quiz h2 {
-      margin-bottom: 12px;
-      font-size: 2rem;
+    .accordion-body p{
+      color:#dbeafe;
+      line-height:1.8;
+      padding-bottom:18px;
     }
 
-    .footer-quiz p {
-      color: #cbd5e1;
-      margin-bottom: 22px;
-      line-height: 1.7;
+    .timeline{
+      display:grid;
+      gap:18px;
     }
 
-    .quote-box {
-      border-left: 4px solid #f59e0b;
-      padding: 18px 20px;
-      background: rgba(255,255,255,0.07);
-      border-radius: 14px;
-      color: #f8fafc;
-      line-height: 1.8;
+    .timeline-item{
+      position:relative;
+      padding-left:28px;
     }
 
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .timeline-item::before{
+      content:"";
+      position:absolute;
+      left:0;
+      top:7px;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      box-shadow:0 0 16px rgba(245,158,11,.4);
     }
 
-    .fade-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
+    .timeline-item::after{
+      content:"";
+      position:absolute;
+      left:5px;
+      top:24px;
+      width:2px;
+      height:calc(100% + 12px);
+      background:rgba(255,255,255,.14);
     }
 
-    .fade-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .timeline-item:last-child::after{
+      display:none;
     }
 
-    @media (max-width: 768px) {
-      .hero-card {
-        padding: 28px;
-      }
+    .footer-quiz{
+      text-align:center;
+      padding:38px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
 
-      h1 {
-        font-size: 2.4rem;
-      }
+    .footer-quiz::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at top, rgba(96,165,250,.16), transparent 45%);
+      pointer-events:none;
+    }
 
-      .section-title {
-        font-size: 1.6rem;
-      }
+    .footer-quiz h2{
+      font-size:2rem;
+      margin-bottom:12px;
+    }
+
+    .footer-quiz p{
+      color:var(--muted);
+      line-height:1.8;
+      margin-bottom:22px;
+    }
+
+    .footer-note{
+      margin-top:14px;
+      font-size:14px;
+      color:#94a3b8;
+    }
+
+    @keyframes heroEnter{
+      from{opacity:0; transform:translateY(28px) scale(.98);}
+      to{opacity:1; transform:translateY(0) scale(1);}
+    }
+
+    @media (max-width: 768px){
+      .hero-card{padding:30px;}
+      h1{font-size:2.8rem;}
+      .section-title{font-size:1.7rem;}
+      .hero-mini-stats{grid-template-columns:1fr;}
+      .mouse-glow{display:none;}
     }
   </style>
 </head>
 <body>
-  <div class="bg-glow glow1"></div>
-  <div class="bg-glow glow2"></div>
+  <div class="scroll-progress" id="scrollProgress"></div>
+  <div class="mouse-glow" id="mouseGlow"></div>
+  <canvas id="particles"></canvas>
+
+  <div class="bg-orb orb1"></div>
+  <div class="bg-orb orb2"></div>
+  <div class="bg-orb orb3"></div>
 
   <div class="container">
     <section class="hero">
-      <div class="hero-card">
+      <div class="hero-card" id="heroCard">
+        <div class="hero-shine"></div>
         <span class="tag">Abercrombie & Fitch • Key Moment</span>
-        <h1>Check Out</h1>
+        <h1><span class="gradient-text">Check Out</span></h1>
         <p>
           El check out no es solo cobrar. Es el último momento de contacto con el cliente,
           donde se confirma la compra, se refuerza su decisión, se corrigen posibles errores
           y se cierra la experiencia de forma positiva para aumentar la probabilidad de que regrese.
         </p>
+
         <div class="hero-buttons">
           <a href="#explicacion" class="btn btn-primary">Ver presentación</a>
           <a href="#quiz" class="btn btn-secondary">Ir al cuestionario</a>
+        </div>
+
+        <div class="hero-mini-stats">
+          <div class="mini-stat">
+            <h3>1</h3>
+            <p>Última impresión que define cómo se recuerda la experiencia.</p>
+          </div>
+          <div class="mini-stat">
+            <h3>4</h3>
+            <p>Ideas clave: confirmar, reforzar, cerrar y fidelizar.</p>
+          </div>
+          <div class="mini-stat">
+            <h3>100%</h3>
+            <p>Del cliente en ese momento: atención, claridad y buena energía.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -395,8 +663,8 @@
     <section id="explicacion" class="fade-on-scroll">
       <h2 class="section-title">¿Qué es el Check Out?</h2>
       <p class="section-sub">
-        Es el cierre de la experiencia en tienda. Aquí el cliente ya tomó una decisión,
-        pero todavía necesita seguridad, atención, claridad y un buen último recuerdo.
+        Es el cierre de la experiencia en tienda. Aquí el cliente ya eligió, pero todavía necesita
+        seguridad, validación y un trato final que confirme que tomó una buena decisión.
       </p>
 
       <div class="grid grid-3">
@@ -413,7 +681,7 @@
         <div class="card">
           <span class="pill">Resultado</span>
           <h3>Fidelizar</h3>
-          <p>Un buen cierre aumenta la posibilidad de recompra, registro y recomendación.</p>
+          <p>Un buen cierre aumenta la posibilidad de recompra, recomendación y regreso.</p>
         </div>
       </div>
     </section>
@@ -421,19 +689,19 @@
     <section class="fade-on-scroll">
       <h2 class="section-title">Por qué es tan importante</h2>
       <p class="section-sub">
-        En caja sucede el último impacto emocional. Un cliente puede haber tenido un buen recorrido,
-        pero si el cierre es frío, lento o descuidado, la experiencia completa baja de valor.
+        En caja sucede el último impacto emocional. Un recorrido puede haber sido bueno,
+        pero si la salida es fría o descuidada, toda la experiencia pierde valor.
       </p>
 
       <div class="quote-box">
-        Check out = confirmar + reforzar + cerrar + fidelizar.
+        Check Out = confirmar + reforzar + cerrar + fidelizar.
       </div>
     </section>
 
     <section class="fade-on-scroll">
       <h2 class="section-title">Cómo llevarlo a cabo paso a paso</h2>
       <p class="section-sub">
-        Esta es una secuencia simple y efectiva para ejecutar bien el key moment de caja.
+        Esta secuencia te ayuda a explicarlo de forma clara y fácil de recordar.
       </p>
 
       <div class="grid grid-2 steps">
@@ -443,23 +711,23 @@
         </div>
         <div class="card step">
           <h3>Confirma los productos</h3>
-          <p>Revisa con atención lo que está llevando para evitar errores y mostrar interés genuino.</p>
+          <p>Revisa lo que está llevando para evitar errores y demostrar atención.</p>
         </div>
         <div class="card step">
           <h3>Refuerza su elección</h3>
-          <p>Usa comentarios como: “Excelente elección” o “Ese modelo está muy bonito”.</p>
+          <p>Usa frases como “excelente elección” para darle seguridad a su compra.</p>
         </div>
         <div class="card step">
           <h3>Mantén conversación</h3>
-          <p>No hagas el cobro en silencio. La interacción debe seguir antes, durante y después del pago.</p>
+          <p>No hagas el cobro en silencio. Sigue acompañando la experiencia.</p>
         </div>
         <div class="card step">
           <h3>Ofrece beneficios</h3>
-          <p>Menciona CRM, ticket por correo, WhatsApp o envío gratis si aplica.</p>
+          <p>Menciona ticket por correo, CRM, WhatsApp o cualquier valor adicional disponible.</p>
         </div>
         <div class="card step">
           <h3>Cierra con despedida positiva</h3>
-          <p>Agradece la compra, despídete con energía y deja una buena última impresión.</p>
+          <p>Agradece la compra y deja una buena última impresión.</p>
         </div>
       </div>
     </section>
@@ -472,23 +740,23 @@
     </section>
 
     <section class="fade-on-scroll">
-      <h2 class="section-title">Qué se debe comunicar en caja</h2>
+      <h2 class="section-title">Qué comunica una buena caja</h2>
       <div class="grid grid-2">
         <div class="card">
           <h3>Seguridad</h3>
-          <p>El cliente debe sentir que todo está correcto y que está comprando lo que realmente eligió.</p>
+          <p>Todo está correcto y bajo control.</p>
         </div>
         <div class="card">
           <h3>Validación</h3>
-          <p>El refuerzo positivo ayuda a confirmar emocionalmente la compra.</p>
+          <p>El cliente siente que hizo una buena compra.</p>
         </div>
         <div class="card">
           <h3>Claridad</h3>
-          <p>Debes explicar beneficios o procesos de forma simple y breve.</p>
+          <p>Los beneficios o procesos se explican fácil y rápido.</p>
         </div>
         <div class="card">
           <h3>Cuidado</h3>
-          <p>La manera en que tratas la prenda, la bolsa y la despedida también comunica valor.</p>
+          <p>La forma de cobrar, empacar y despedir también comunica valor.</p>
         </div>
       </div>
     </section>
@@ -496,7 +764,7 @@
     <section class="fade-on-scroll">
       <h2 class="section-title">Situaciones en caja</h2>
       <p class="section-sub">
-        Estas situaciones te sirven para explicar cómo se adapta el check out según el tipo de cliente o problema.
+        Aquí puedes mostrar cómo cambia el check out según el tipo de cliente o problema.
       </p>
 
       <div class="scenario-buttons">
@@ -509,33 +777,30 @@
       <div class="card scenario-content active">
         <h3>Cliente indeciso</h3>
         <p>
-          Aquí conviene reforzar la elección sin presionar. Puedes decir:
-          “Es una muy buena elección” o “Ese modelo le queda muy bien a muchos clientes”.
-          El objetivo es darle seguridad.
+          Aquí conviene reforzar la elección sin presionar. Ejemplo:
+          “Es una muy buena elección”. El objetivo es darle seguridad.
         </p>
       </div>
 
       <div class="card scenario-content">
         <h3>Error en producto</h3>
         <p>
-          Si notas una talla incorrecta, defecto o confusión antes de cobrar, debes actuar rápido.
-          Caja también es control de precisión, no solo cobro.
+          Si notas una talla incorrecta o un detalle antes de cobrar, debes actuar rápido.
+          Caja también es precisión, no solo pago.
         </p>
       </div>
 
       <div class="card scenario-content">
         <h3>Cliente serio</h3>
         <p>
-          No hace falta hablar demasiado, pero sí mantener respeto, contacto visual, claridad y buena actitud.
-          Un check out correcto también sabe adaptarse.
+          No hace falta hablar demasiado, pero sí mantener respeto, claridad y buena actitud.
         </p>
       </div>
 
       <div class="card scenario-content">
         <h3>Cliente satisfecho</h3>
         <p>
-          Aquí es buen momento para fortalecer la relación: registro, ticket por correo,
-          atención por WhatsApp o invitación a regresar.
+          Es buen momento para fortalecer la relación con ticket por correo, WhatsApp o invitación a regresar.
         </p>
       </div>
     </section>
@@ -546,80 +811,94 @@
       <div class="accordion-item">
         <button class="accordion-header">Error 1: Cobrar en silencio</button>
         <div class="accordion-body">
-          <p>
-            Hace que la experiencia se sienta fría y automática. Aunque sea una interacción breve,
-            debe haber conexión.
-          </p>
+          <p>Hace que la experiencia se sienta fría y automática. Debe haber conexión.</p>
         </div>
       </div>
 
       <div class="accordion-item">
         <button class="accordion-header">Error 2: No confirmar los productos</button>
         <div class="accordion-body">
-          <p>
-            Puede generar errores, devoluciones o dudas. Confirmar demuestra atención y precisión.
-          </p>
+          <p>Puede generar errores, devoluciones o dudas. Confirmar demuestra atención.</p>
         </div>
       </div>
 
       <div class="accordion-item">
         <button class="accordion-header">Error 3: No reforzar la decisión del cliente</button>
         <div class="accordion-body">
-          <p>
-            En caja todavía se puede fortalecer emocionalmente la compra. Si no validas, pierdes una oportunidad.
-          </p>
+          <p>En caja todavía se puede fortalecer emocionalmente la compra.</p>
         </div>
       </div>
 
       <div class="accordion-item">
         <button class="accordion-header">Error 4: No ofrecer beneficios adicionales</button>
         <div class="accordion-body">
-          <p>
-            CRM, ticket electrónico o WhatsApp pueden sumar valor y hacer más completa la experiencia.
-          </p>
+          <p>CRM, ticket electrónico o WhatsApp pueden sumar valor a la experiencia.</p>
         </div>
       </div>
 
       <div class="accordion-item">
-        <button class="accordion-header">Error 5: Despedida débil o sin energía</button>
+        <button class="accordion-header">Error 5: Despedida débil</button>
         <div class="accordion-body">
-          <p>
-            El último recuerdo importa mucho. Una buena despedida puede dejar una sensación positiva duradera.
-          </p>
+          <p>El último recuerdo importa mucho. Una despedida buena sí cambia la percepción final.</p>
         </div>
       </div>
     </section>
 
     <section class="fade-on-scroll">
-      <h2 class="section-title">Cómo llevarlo a cabo de forma más fácil</h2>
+      <h2 class="section-title">Cómo explicarlo fácil en tu exposición</h2>
       <div class="grid grid-2">
         <div class="card">
-          <h3>Memoriza una sola estructura</h3>
-          <p>No memorices demasiado. Solo recuerda: recibir, confirmar, reforzar y despedir.</p>
+          <h3>Idea principal</h3>
+          <p>Caja no es cobrar: es cerrar una experiencia.</p>
         </div>
         <div class="card">
-          <h3>Ten frases base</h3>
-          <p>Ejemplo: “Excelente elección” o “¿Te gustaría recibir tu ticket por correo?”</p>
+          <h3>Estructura corta</h3>
+          <p>Recibir, confirmar, reforzar, ofrecer beneficios y despedir.</p>
         </div>
         <div class="card">
-          <h3>No pienses solo en cobrar</h3>
-          <p>Piensa en cerrar una experiencia y no solo en terminar una transacción.</p>
+          <h3>Frase útil</h3>
+          <p>“Excelente elección. ¿Te gustaría recibir tu ticket por correo?”</p>
         </div>
         <div class="card">
-          <h3>Hazlo natural</h3>
-          <p>La mejor ejecución no suena robot; suena amable, clara y genuina.</p>
+          <h3>Objetivo final</h3>
+          <p>Que el cliente se vaya satisfecho y con ganas de regresar.</p>
         </div>
       </div>
     </section>
 
     <section class="fade-on-scroll">
-      <h2 class="section-title">Ejemplo práctico de speech en caja</h2>
+      <h2 class="section-title">Speech rápido de ejemplo</h2>
       <div class="card">
         <p>
-          “Perfecto, excelente elección. Te llevas una muy buena opción.
-          ¿Te gustaría que te enviemos tu ticket por correo? También contamos con atención por WhatsApp.
-          Muchas gracias por tu compra, que tengas excelente día.”
+          “El key moment de check out es muy importante porque no solo se trata de cobrar.
+          En este punto confirmamos la compra, reforzamos la decisión del cliente, ofrecemos beneficios
+          y cerramos la experiencia con una despedida positiva. Es el último contacto con el cliente,
+          y por eso puede definir si regresa o no.”
         </p>
+      </div>
+    </section>
+
+    <section class="fade-on-scroll">
+      <h2 class="section-title">Ruta emocional del cliente en caja</h2>
+      <div class="card">
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>Llega a caja</h3>
+            <p>Busca rapidez, claridad y buen trato.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Confirma su compra</h3>
+            <p>Necesita sentir que todo está correcto.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Recibe validación</h3>
+            <p>Un comentario positivo refuerza su decisión.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>Se despide</h3>
+            <p>La última impresión se convierte en recuerdo.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -631,9 +910,7 @@
           para contestar el cuestionario.
         </p>
         <a id="formLink" href="#" target="_blank" class="btn btn-primary">Contestar cuestionario</a>
-        <p style="margin-top:16px; font-size: 14px; color:#94a3b8;">
-          Reemplaza el link de abajo por el de tu Google Forms.
-        </p>
+        <p class="footer-note">Reemplaza el link por el de tu Google Forms.</p>
       </div>
     </section>
   </div>
@@ -643,17 +920,11 @@
       const buttons = document.querySelectorAll('.scenario-btn');
       const contents = document.querySelectorAll('.scenario-content');
 
-      buttons.forEach((btn, i) => {
-        btn.classList.toggle('active', i === index);
-      });
-
-      contents.forEach((content, i) => {
-        content.classList.toggle('active', i === index);
-      });
+      buttons.forEach((btn, i) => btn.classList.toggle('active', i === index));
+      contents.forEach((content, i) => content.classList.toggle('active', i === index));
     }
 
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
-    accordionHeaders.forEach(header => {
+    document.querySelectorAll('.accordion-header').forEach(header => {
       header.addEventListener('click', () => {
         const body = header.nextElementSibling;
         const isOpen = body.style.maxHeight;
@@ -670,15 +941,113 @@
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.12 });
 
     document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
 
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (scrollTop / docHeight) * 100;
+      document.getElementById('scrollProgress').style.width = progress + '%';
+    });
+
+    const mouseGlow = document.getElementById('mouseGlow');
+    window.addEventListener('mousemove', (e) => {
+      mouseGlow.style.left = e.clientX + 'px';
+      mouseGlow.style.top = e.clientY + 'px';
+    });
+
+    const heroCard = document.getElementById('heroCard');
+    heroCard.addEventListener('mousemove', (e) => {
+      const rect = heroCard.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateY = (x - centerX) / 35;
+      const rotateX = (centerY - y) / 35;
+
+      heroCard.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    heroCard.addEventListener('mouseleave', () => {
+      heroCard.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
+    });
+
     document.getElementById('formLink').href = "https://forms.gle/TU-LINK-AQUI";
+
+    // Partículas
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createParticles() {
+      particles = [];
+      const amount = Math.min(70, Math.floor(window.innerWidth / 18));
+      for (let i = 0; i < amount; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 2.4 + 0.8,
+          dx: (Math.random() - 0.5) * 0.35,
+          dy: (Math.random() - 0.5) * 0.35,
+          a: Math.random() * 0.5 + 0.15
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.x += p.dx;
+        p.y += p.dy;
+
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+        ctx.fill();
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.strokeStyle = `rgba(147,197,253,${0.12 - dist / 1200})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(drawParticles);
+    }
+
+    resizeCanvas();
+    createParticles();
+    drawParticles();
+
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      createParticles();
+    });
   </script>
 </body>
 </html>
