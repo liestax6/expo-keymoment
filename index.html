@@ -1,37 +1,621 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Check In - ANF</title>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Key Moment: Check In | ANF</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #334155);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .bg-glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.18;
+      z-index: 0;
+      animation: floatGlow 8s ease-in-out infinite alternate;
+    }
+
+    .glow1 {
+      background: #60a5fa;
+      top: -100px;
+      left: -100px;
+    }
+
+    .glow2 {
+      background: #f59e0b;
+      bottom: -120px;
+      right: -120px;
+      animation-delay: 1.5s;
+    }
+
+    @keyframes floatGlow {
+      from { transform: translateY(0px) translateX(0px) scale(1); }
+      to { transform: translateY(30px) translateX(20px) scale(1.15); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: min(1150px, 92%);
+      margin: auto;
+      padding: 40px 0 80px;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-card {
+      width: 100%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(14px);
+      border-radius: 28px;
+      padding: 48px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+      animation: fadeUp 1s ease;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(251,191,36,0.35);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      max-width: 760px;
+      color: #e2e8f0;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      border: none;
+      cursor: pointer;
+      padding: 14px 22px;
+      border-radius: 14px;
+      font-weight: bold;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f59e0b, #f97316);
+      color: white;
+      box-shadow: 0 10px 30px rgba(249,115,22,0.28);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.14);
+      transform: translateY(-3px);
+    }
+
+    section {
+      margin-top: 70px;
+      animation: fadeUp 1s ease both;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 18px;
+    }
+
+    .section-sub {
+      color: #cbd5e1;
+      margin-bottom: 26px;
+      line-height: 1.7;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 22px;
+      padding: 24px;
+      transition: 0.35s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      background: rgba(255,255,255,0.11);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+      color: #f8fafc;
+    }
+
+    .card p, .card li {
+      color: #dbeafe;
+      line-height: 1.7;
+    }
+
+    .pill {
+      display: inline-block;
+      background: rgba(96,165,250,0.15);
+      color: #93c5fd;
+      padding: 7px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+
+    .steps {
+      counter-reset: step;
+    }
+
+    .step {
+      position: relative;
+      padding-left: 62px;
+    }
+
+    .step::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: bold;
+      box-shadow: 0 8px 20px rgba(59,130,246,0.3);
+    }
+
+    .scenario-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .scenario-btn {
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      cursor: pointer;
+      transition: 0.25s ease;
+      font-weight: bold;
+    }
+
+    .scenario-btn:hover,
+    .scenario-btn.active {
+      background: linear-gradient(135deg, #2563eb, #0ea5e9);
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+
+    .scenario-content {
+      display: none;
+    }
+
+    .scenario-content.active {
+      display: block;
+      animation: fadeUp 0.45s ease;
+    }
+
+    .formula-box {
+      background: linear-gradient(135deg, rgba(245,158,11,0.16), rgba(249,115,22,0.16));
+      border: 1px solid rgba(251,191,36,0.25);
+      border-radius: 22px;
+      padding: 28px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #fff7ed;
+      box-shadow: 0 12px 30px rgba(249,115,22,0.12);
+    }
+
+    .accordion-item {
+      margin-bottom: 14px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.07);
+    }
+
+    .accordion-header {
+      width: 100%;
+      padding: 18px 20px;
+      text-align: left;
+      background: transparent;
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .accordion-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+      padding: 0 20px;
+    }
+
+    .accordion-body p {
+      color: #dbeafe;
+      padding-bottom: 18px;
+      line-height: 1.7;
+    }
+
+    .footer-quiz {
+      text-align: center;
+      padding: 34px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 26px;
+    }
+
+    .footer-quiz h2 {
+      margin-bottom: 12px;
+      font-size: 2rem;
+    }
+
+    .footer-quiz p {
+      color: #cbd5e1;
+      margin-bottom: 22px;
+      line-height: 1.7;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .fade-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .hero-card {
+        padding: 28px;
+      }
+
+      h1 {
+        font-size: 2.4rem;
+      }
+
+      .section-title {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
 </head>
-<body style="font-family: Arial; padding: 20px;">
+<body>
+  <div class="bg-glow glow1"></div>
+  <div class="bg-glow glow2"></div>
 
-<h1>Key Moment: Check In</h1>
+  <div class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <span class="tag">Abercrombie & Fitch • Key Moment</span>
+        <h1>Check In</h1>
+        <p>
+          El check in es el primer contacto real con el cliente dentro de la tienda.
+          No se trata solo de saludar: se trata de hacerlo sentir visto, bienvenido,
+          cómodo y abierto a recibir ayuda.
+        </p>
+        <div class="hero-buttons">
+          <a href="#explicacion" class="btn btn-primary">Ver presentación</a>
+          <a href="#quiz" class="btn btn-secondary">Ir al cuestionario</a>
+        </div>
+      </div>
+    </section>
 
-<h2>¿Qué es?</h2>
-<p>Es el primer contacto con el cliente. Debes hacerlo sentir visto, cómodo y acompañado.</p>
+    <section id="explicacion" class="fade-on-scroll">
+      <h2 class="section-title">¿Qué es el Check In?</h2>
+      <p class="section-sub">
+        Es el momento en el que detectas la llegada del cliente, haces una pausa,
+        transmites disposición y abres la puerta a una experiencia personalizada.
+      </p>
 
-<h2>Cómo hacerlo</h2>
-<ul>
-  <li>Pausa lo que haces</li>
-  <li>Contacto visual + sonrisa</li>
-  <li>Saludo natural</li>
-  <li>Haz una pregunta</li>
-  <li>Acompaña al cliente</li>
-</ul>
+      <div class="grid grid-3">
+        <div class="card">
+          <span class="pill">Objetivo</span>
+          <h3>Conectar desde el inicio</h3>
+          <p>Hacer que el cliente se sienta atendido desde los primeros segundos.</p>
+        </div>
+        <div class="card">
+          <span class="pill">Impacto</span>
+          <h3>Romper la barrera inicial</h3>
+          <p>Ayuda a que el cliente tenga confianza para preguntar, explorar y comprar.</p>
+        </div>
+        <div class="card">
+          <span class="pill">Clave</span>
+          <h3>Disponibilidad visible</h3>
+          <p>No basta con querer ayudar; el cliente debe notar que estás disponible.</p>
+        </div>
+      </div>
+    </section>
 
-<h2>Fórmula fácil</h2>
-<p><b>Pausa + sonrisa + saludo + pregunta + acompañamiento</b></p>
+    <section class="fade-on-scroll">
+      <h2 class="section-title">Cómo llevarlo a cabo</h2>
+      <p class="section-sub">
+        La forma más fácil de explicarlo es como una secuencia corta que puedes repetir siempre.
+      </p>
 
-<h2>Cuestionario</h2>
+      <div class="grid grid-2 steps">
+        <div class="card step">
+          <h3>Haz una pausa</h3>
+          <p>Cuando detectes al cliente, detén físicamente lo que estás haciendo. Esa pausa comunica disponibilidad inmediata.</p>
+        </div>
+        <div class="card step">
+          <h3>Contacto visual y sonrisa</h3>
+          <p>Una expresión abierta reduce tensión y transmite seguridad.</p>
+        </div>
+        <div class="card step">
+          <h3>Saludo natural</h3>
+          <p>Saluda con amabilidad, sin sonar robot ni demasiado invasivo.</p>
+        </div>
+        <div class="card step">
+          <h3>Haz una pregunta útil</h3>
+          <p>Ejemplo: “¿Buscas algo en especial o te ayudo a encontrar opciones?”</p>
+        </div>
+        <div class="card step">
+          <h3>Escucha y detecta</h3>
+          <p>Con su respuesta, identifica intención, necesidad o estilo.</p>
+        </div>
+        <div class="card step">
+          <h3>Acompaña sin invadir</h3>
+          <p>El objetivo es guiar al cliente, no presionarlo.</p>
+        </div>
+      </div>
+    </section>
 
-<p>1. ¿Objetivo del check in?</p>
-<button onclick="alert('Correcto')">Conectar con el cliente</button>
-<button onclick="alert('Incorrecto')">Cobrar rápido</button>
+    <section class="fade-on-scroll">
+      <h2 class="section-title">Fórmula fácil para recordarlo</h2>
+      <div class="formula-box">
+        Pausa + sonrisa + saludo + pregunta + acompañamiento
+      </div>
+    </section>
 
-<p>2. ¿Error común?</p>
-<button onclick="alert('Correcto')">Verse ocupado</button>
-<button onclick="alert('Incorrecto')">Sonreír</button>
+    <section class="fade-on-scroll">
+      <h2 class="section-title">Situaciones reales</h2>
+      <p class="section-sub">
+        Aquí puedes mostrar distintos escenarios durante tu exposición y explicar qué harías.
+      </p>
 
+      <div class="scenario-buttons">
+        <button class="scenario-btn active" onclick="showScenario(0)">Cliente indeciso</button>
+        <button class="scenario-btn" onclick="showScenario(1)">Cliente apurado</button>
+        <button class="scenario-btn" onclick="showScenario(2)">Cliente que solo mira</button>
+        <button class="scenario-btn" onclick="showScenario(3)">Cliente tímido</button>
+      </div>
+
+      <div class="card scenario-content active">
+        <h3>Cliente indeciso</h3>
+        <p>
+          Aquí conviene abrir conversación con una pregunta sencilla y darle 2 o 3 opciones,
+          no demasiadas. El check in sirve para detectar qué le cuesta decidir y darle dirección.
+        </p>
+      </div>
+
+      <div class="card scenario-content">
+        <h3>Cliente apurado</h3>
+        <p>
+          Debes ir directo, claro y útil. Un saludo breve y una pregunta concreta:
+          “Claro, te ayudo rápido, ¿qué prenda estás buscando?”.
+        </p>
+      </div>
+
+      <div class="card scenario-content">
+        <h3>Cliente que solo está viendo</h3>
+        <p>
+          No lo presiones. El check in aquí sirve para hacerle saber que estás disponible.
+          Puedes decir: “Perfecto, cualquier cosa aquí estoy para ayudarte”.
+        </p>
+      </div>
+
+      <div class="card scenario-content">
+        <h3>Cliente tímido</h3>
+        <p>
+          Aquí pesa mucho el lenguaje no verbal. Sonrisa, tono suave, poca presión
+          y una pregunta amable ayudan a construir confianza.
+        </p>
+      </div>
+    </section>
+
+    <section class="fade-on-scroll">
+      <h2 class="section-title">Errores comunes y cómo corregirlos</h2>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Error 1: Verse demasiado ocupado</button>
+        <div class="accordion-body">
+          <p>
+            Si sigues doblando ropa o viendo hacia otro lado, el cliente siente que molesta.
+            Corrígelo haciendo una pausa visible y dando prioridad al contacto inicial.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Error 2: Saludar sin intención</button>
+        <div class="accordion-body">
+          <p>
+            Un “hola” seco no genera conexión. Debe ir acompañado de disposición, tono positivo y apertura.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Error 3: Preguntar demasiado pronto y con presión</button>
+        <div class="accordion-body">
+          <p>
+            Si interrogas demasiado rápido, el cliente puede cerrarse. Mejor usa preguntas simples y naturales.
+          </p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Error 4: No adaptar el trato al tipo de cliente</button>
+        <div class="accordion-body">
+          <p>
+            No todos quieren la misma intensidad. El check in también consiste en leer señales y ajustar tu acercamiento.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="fade-on-scroll">
+      <h2 class="section-title">Cómo aplicarlo más fácil en el día a día</h2>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Memoriza una sola estructura</h3>
+          <p>No memorices discursos largos. Solo recuerda la fórmula y adáptala.</p>
+        </div>
+        <div class="card">
+          <h3>Ten una frase base</h3>
+          <p>Ejemplo: “Hola, bienvenido, ¿buscas algo en especial?”</p>
+        </div>
+        <div class="card">
+          <h3>Usa el lenguaje corporal</h3>
+          <p>A veces tu postura comunica más que tus palabras.</p>
+        </div>
+        <div class="card">
+          <h3>Piensa en abrir, no en vender de inmediato</h3>
+          <p>El check in prepara el terreno; no se trata de cerrar la venta en 5 segundos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="fade-on-scroll">
+      <div class="footer-quiz">
+        <h2>Cuestionario final</h2>
+        <p>
+          Al terminar tu exposición, aquí puedes mandar a las personas al formulario
+          para contestar el cuestionario.
+        </p>
+        <a id="formLink" href="#" target="_blank" class="btn btn-primary">Contestar cuestionario</a>
+        <p style="margin-top:16px; font-size: 14px; color:#94a3b8;">
+          Cuando me pases tu link de Google Forms, solo reemplazamos el enlace.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    function showScenario(index) {
+      const buttons = document.querySelectorAll('.scenario-btn');
+      const contents = document.querySelectorAll('.scenario-content');
+
+      buttons.forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+
+      contents.forEach((content, i) => {
+        content.classList.toggle('active', i === index);
+      });
+    }
+
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const body = header.nextElementSibling;
+        const isOpen = body.style.maxHeight;
+
+        document.querySelectorAll('.accordion-body').forEach(item => {
+          item.style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-on-scroll').forEach(el => observer.observe(el));
+
+    // REEMPLAZA ESTE LINK CUANDO TENGAS TU GOOGLE FORMS
+    document.getElementById('formLink').href = "https://forms.gle/TU-LINK-AQUI";
+  </script>
 </body>
 </html>
