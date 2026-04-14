@@ -6,54 +6,59 @@
 <title>Check Out - Diego</title>
 
 <style>
+:root{
+  --bg:#0f172a;
+  --card:rgba(255,255,255,0.07);
+  --accent:orange;
+}
+
 body{
   margin:0;
   font-family:Arial;
+  background:radial-gradient(circle at top,#1e293b,#020617);
   color:white;
-  background:linear-gradient(135deg,#0f172a,#1e293b,#020617);
   overflow-x:hidden;
 }
 
-/* Fondo animado */
-.bg{
+/* PARTICLES */
+canvas{
   position:fixed;
-  width:500px;
-  height:500px;
-  background:orange;
+  top:0;
+  left:0;
+  z-index:0;
+}
+
+/* GLOW CURSOR */
+.cursor{
+  position:fixed;
+  width:250px;
+  height:250px;
   border-radius:50%;
-  filter:blur(120px);
-  opacity:0.2;
-  animation:move 10s infinite alternate;
+  background:radial-gradient(circle,rgba(255,255,255,0.1),transparent);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
 }
 
-.bg2{
-  right:-200px;
-  bottom:-200px;
-  background:#3b82f6;
-}
-
-@keyframes move{
-  from{transform:translate(0,0);}
-  to{transform:translate(50px,50px);}
-}
-
+/* CONTAINER */
 .container{
   position:relative;
   z-index:2;
   width:90%;
   max-width:1100px;
   margin:auto;
-  padding:50px 0;
+  padding:60px 0;
 }
 
 h1{
-  font-size:3.5rem;
+  font-size:4rem;
+  margin-bottom:10px;
 }
 
+/* SECTIONS */
 .section{
-  margin-top:70px;
+  margin-top:80px;
   opacity:0;
-  transform:translateY(40px);
+  transform:translateY(50px);
   transition:0.8s;
 }
 
@@ -62,21 +67,22 @@ h1{
   transform:translateY(0);
 }
 
-/* Cards */
+/* CARDS */
 .card{
-  background:rgba(255,255,255,0.08);
-  border-radius:20px;
+  background:var(--card);
   padding:25px;
+  border-radius:20px;
   border:1px solid rgba(255,255,255,0.1);
   transition:0.3s;
+  transform-style:preserve-3d;
 }
 
 .card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+  transform:rotateX(5deg) rotateY(-5deg) scale(1.03);
+  box-shadow:0 25px 50px rgba(0,0,0,0.5);
 }
 
-/* Grid */
+/* GRID */
 .grid{
   display:grid;
   gap:20px;
@@ -86,18 +92,24 @@ h1{
   grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 }
 
-/* Highlight */
-.highlight{
-  text-align:center;
-  padding:30px;
-  border-radius:20px;
+/* SPOTLIGHT DIEGO */
+.diego{
+  padding:40px;
+  border-radius:25px;
   background:linear-gradient(135deg,orange,#ff7b00);
-  font-weight:bold;
+  text-align:center;
   font-size:1.3rem;
-  box-shadow:0 15px 40px rgba(255,140,0,0.4);
+  font-weight:bold;
+  box-shadow:0 20px 50px rgba(255,140,0,0.5);
+  animation:float 3s infinite ease-in-out;
 }
 
-/* Timeline */
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+}
+
+/* TIMELINE */
 .timeline{
   border-left:3px solid orange;
   padding-left:20px;
@@ -105,9 +117,21 @@ h1{
 
 .timeline div{
   margin-bottom:20px;
+  position:relative;
 }
 
-/* Botones */
+.timeline div::before{
+  content:'';
+  position:absolute;
+  left:-10px;
+  top:5px;
+  width:12px;
+  height:12px;
+  background:orange;
+  border-radius:50%;
+}
+
+/* BUTTON */
 .btn{
   padding:15px 25px;
   border:none;
@@ -119,18 +143,10 @@ h1{
 }
 
 .btn:hover{
-  transform:scale(1.05);
+  transform:scale(1.1);
 }
 
-/* Escenarios */
-.scenario-btn{
-  margin:5px;
-  padding:10px;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-}
-
+/* SCENARIOS */
 .hidden{display:none;}
 
 </style>
@@ -138,15 +154,15 @@ h1{
 
 <body>
 
-<div class="bg"></div>
-<div class="bg bg2"></div>
+<canvas id="canvas"></canvas>
+<div class="cursor" id="cursor"></div>
 
 <div class="container">
 
 <h1>Check Out</h1>
-<p>El momento final donde el cliente define su experiencia.</p>
+<p>El momento donde el cliente decide cómo recordar la experiencia.</p>
 
-<!-- IDEA GENERAL -->
+<!-- GENERAL -->
 <div class="section">
 <h2>Idea general</h2>
 
@@ -157,25 +173,24 @@ h1{
 </div>
 </div>
 
-<!-- TU PROCESO -->
+<!-- DIEGO -->
 <div class="section">
-<h2>Mi proceso (Diego)</h2>
+<h2>Cómo lo hago yo (Diego)</h2>
 
 <div class="timeline">
-
-<div class="card">1. Nunca me quedo callado</div>
-<div class="card">2. Desalarmo mientras hablo</div>
-<div class="card">3. Le digo que conteste la encuesta</div>
-<div class="card">4. Mientras doblo, el cliente responde</div>
-<div class="card">5. Todo listo al terminar</div>
-
-</div>
+<div class="card">Nunca me quedo callado</div>
+<div class="card">Desalarmo mientras hablo</div>
+<div class="card">Pido encuesta</div>
+<div class="card">Cliente responde mientras trabajo</div>
+<div class="card">Todo listo al final</div>
 </div>
 
-<!-- DESTACADO -->
+</div>
+
+<!-- SPOTLIGHT -->
 <div class="section">
-<div class="highlight">
-Hablar + trabajar + usar la encuesta = proceso rápido y sin tiempos muertos
+<div class="diego">
+Mi proceso: hablar + usar el tiempo + encuesta = proceso rápido y eficiente
 </div>
 </div>
 
@@ -183,37 +198,26 @@ Hablar + trabajar + usar la encuesta = proceso rápido y sin tiempos muertos
 <div class="section">
 <h2>Cómo me adapto</h2>
 
-<button class="scenario-btn" onclick="show(0)">Callado</button>
-<button class="scenario-btn" onclick="show(1)">Rápido</button>
-<button class="scenario-btn" onclick="show(2)">Indeciso</button>
+<button onclick="show(0)">Callado</button>
+<button onclick="show(1)">Rápido</button>
+<button onclick="show(2)">Indeciso</button>
 
-<div id="s0" class="card">Mantengo conversación sin presionar</div>
-<div id="s1" class="card hidden">Voy directo pero sin perder trato</div>
-<div id="s2" class="card hidden">Refuerzo su decisión</div>
+<div id="s0" class="card">Mantengo conversación leve</div>
+<div id="s1" class="card hidden">Voy directo</div>
+<div id="s2" class="card hidden">Refuerzo decisión</div>
 
-</div>
-
-<!-- ERRORES -->
-<div class="section">
-<h2>Errores que evito</h2>
-
-<div class="grid grid-3">
-<div class="card">Silencio</div>
-<div class="card">Lentitud</div>
-<div class="card">No usar el tiempo</div>
-</div>
 </div>
 
 <!-- SPEECH -->
 <div class="section">
-<h2>Cómo lo explico</h2>
+<h2>Speech</h2>
 
 <div class="card">
 Yo hago el check out rápido y sin silencios.  
-Mientras trabajo, le pido al cliente que conteste la encuesta,  
-así cuando termino ya está listo para pagar.  
-Eso hace el proceso más eficiente.
+Mientras trabajo, el cliente contesta la encuesta,  
+y cuando termino ya está listo para pagar.
 </div>
+
 </div>
 
 <!-- FORM -->
@@ -234,16 +238,55 @@ function show(i){
   document.getElementById('s'+i).classList.remove('hidden');
 }
 
-/* Animación scroll */
+/* SCROLL */
 const sections=document.querySelectorAll('.section');
 window.addEventListener('scroll',()=>{
   sections.forEach(sec=>{
-    const top=sec.getBoundingClientRect().top;
-    if(top<window.innerHeight-100){
+    if(sec.getBoundingClientRect().top<window.innerHeight-100){
       sec.classList.add('show');
     }
   });
 });
+
+/* CURSOR */
+const cursor=document.getElementById('cursor');
+window.addEventListener('mousemove',e=>{
+  cursor.style.left=e.clientX+'px';
+  cursor.style.top=e.clientY+'px';
+});
+
+/* PARTICLES */
+const canvas=document.getElementById('canvas');
+const ctx=canvas.getContext('2d');
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+for(let i=0;i<60;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    dx:(Math.random()-0.5),
+    dy:(Math.random()-0.5)
+  });
+}
+
+function draw(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particles.forEach(p=>{
+    p.x+=p.dx;
+    p.y+=p.dy;
+
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,2,0,Math.PI*2);
+    ctx.fillStyle="white";
+    ctx.fill();
+  });
+  requestAnimationFrame(draw);
+}
+
+draw();
 </script>
 
 </body>
